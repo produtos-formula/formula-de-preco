@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Fórmula de Preço — Descubra o preço ideal dos seus produtos ou serviços em minutos, garantindo lucro em cada venda.">
+<title>Fórmula de Preço — Planilha de Precificação</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ── RESET ───────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+img  { max-width: 100%; display: block; }
+
+/* ── TOKENS ──────────────────────────────────────────────────── */
+:root {
+  --ink:        #0E0E1A;
+  --ink-soft:   #4A4A6A;
+  --gold:       #D4AC0D;
+  --gold-light: #FEF9E7;
+  --gold-mid:   #F5D76E;
+  --purple:     #6C3483;
+  --purple-l:   #F5EEF8;
+  --green:      #1E8449;
+  --green-l:    #EAFAF1;
+  --red:        #C0392B;
+  --red-l:      #FDEDEC;
+  --gray:       #F4F4F6;
+  --border:     #E5E5EA;
+  --white:      #FFFFFF;
+
+  --ff-display: 'Syne', sans-serif;
+  --ff-body:    'Inter', sans-serif;
+  --radius:     12px;
+  --radius-sm:  7px;
+  --shadow:     0 2px 16px rgba(14,14,26,.08);
+  --shadow-lg:  0 8px 40px rgba(14,14,26,.14);
+}
+
+/* ── BASE ────────────────────────────────────────────────────── */
+body {
+  font-family: var(--ff-body);
+  background: var(--white);
+  color: var(--ink);
+  line-height: 1.6;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ── ANNOUNCEMENT BAR ────────────────────────────────────────── */
+.ann-bar {
+  background: var(--gold);
+  color: var(--ink);
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+
+/* ── HERO ────────────────────────────────────────────────────── */
+.hero {
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+  padding: 72px 0 64px;
+}
+
+/* signature element: diagonal gold rule across hero */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -80px;
+  width: 340px; height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,172,13,.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  background: rgba(212,172,13,.15);
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 99px;
+  border: 1px solid rgba(212,172,13,.3);
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-family: var(--ff-display);
+  font-size: clamp(32px, 5.5vw, 52px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  margin-bottom: 12px;
+}
+
+.hero h1 .accent {
+  color: var(--gold);
+}
+
+.hero-sub {
+  font-size: clamp(15px, 2vw, 18px);
+  color: #AAAACC;
+  max-width: 560px;
+  margin-bottom: 36px;
+  line-height: 1.65;
+}
+
+.hero-cta-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--ink);
+  font-family: var(--ff-body);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 16px 36px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: transform .15s, box-shadow .15s, background .15s;
+  box-shadow: 0 4px 20px rgba(212,172,13,.35);
+  cursor: pointer;
+  border: none;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(212,172,13,.45);
+  background: #E5BC1A;
+}
+
+.hero-guarantee {
+  font-size: 12px;
+  color: #8888AA;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.hero-guarantee::before {
+  content: '🔒';
+  font-size: 13px;
+}
+
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.hero-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: var(--radius-sm);
+  padding: 10px 16px;
+}
+.hero-badge-icon { font-size: 20px; }
+.hero-badge-text { font-size: 12px; color: #CCCCEE; }
+.hero-badge-text strong { display: block; color: var(--white); font-size: 13px; }
+
+/* ── PAIN SECTION ────────────────────────────────────────────── */
+.pain {
+  padding: 72px 0;
+  background: var(--gray);
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 12px;
+}
+
+.pain h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 16px;
+  letter-spacing: -.02em;
+}
+
+.pain-intro {
+  font-size: 16px;
+  color: var(--ink-soft);
+  max-width: 560px;
+  margin-bottom: 40px;
+}
+
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.pain-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  transition: box-shadow .2s;
+}
+.pain-card:hover { box-shadow: var(--shadow); }
+
+.pain-icon {
+  width: 36px; height: 36px;
+  background: var(--red-l);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.pain-text { font-size: 14px; color: var(--ink); line-height: 1.55; }
+.pain-text strong { display: block; font-size: 14px; margin-bottom: 3px; color: var(--red); }
+
+/* ── PRODUCT SECTION ─────────────────────────────────────────── */
+.product {
+  padding: 80px 0;
+  background: var(--white);
+}
+
+.product h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.2;
+  letter-spacing: -.02em;
+  margin-bottom: 12px;
+}
+
+.product-sub {
+  font-size: 16px;
+  color: var(--ink-soft);
+  max-width: 540px;
+  margin-bottom: 40px;
+}
+
+/* spreadsheet mockup */
+.mockup {
+  background: var(--ink);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 48px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.mockup-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 16px;
+}
+.mockup-dot {
+  width: 11px; height: 11px;
+  border-radius: 50%;
+}
+.d-red    { background: #FF5F57; }
+.d-yellow { background: #FFBD2E; }
+.d-green  { background: #28C840; }
+.mockup-title {
+  font-size: 11px;
+  color: #666688;
+  margin-left: 8px;
+  font-family: monospace;
+}
+
+.sheet-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.sheet-tab {
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: 4px 4px 0 0;
+  color: #8888AA;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  border-bottom: none;
+  white-space: nowrap;
+}
+.sheet-tab.active-tab {
+  background: rgba(212,172,13,.15);
+  color: var(--gold);
+  border-color: rgba(212,172,13,.3);
+}
+
+.sheet-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.sheet-table th {
+  background: rgba(255,255,255,.06);
+  color: #8888AA;
+  font-weight: 500;
+  text-align: left;
+  padding: 7px 10px;
+  font-size: 10px;
+  letter-spacing: .04em;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.sheet-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(255,255,255,.05);
+  color: #CCCCEE;
+}
+.cell-blue   { color: #5DADE2 !important; font-weight: 600; }
+.cell-gold   { color: var(--gold) !important; font-weight: 700; }
+.cell-green  { color: #58D68D !important; font-weight: 700; }
+.cell-red    { color: #EC7063 !important; font-weight: 600; }
+.cell-label  { color: #AAAACC !important; font-size: 11px; }
+
+/* deliverables */
+.includes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.include-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: var(--gray);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+.include-check {
+  width: 22px; height: 22px;
+  background: var(--green);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 12px;
+  color: white;
+  margin-top: 1px;
+}
+.include-text { font-size: 13.5px; color: var(--ink); line-height: 1.5; }
+.include-text strong { display: block; margin-bottom: 2px; }
+
+/* ── HOW IT WORKS ────────────────────────────────────────────── */
+.how {
+  padding: 80px 0;
+  background: var(--ink);
+}
+
+.how h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -.02em;
+  margin-bottom: 12px;
+}
+.how-sub {
+  font-size: 16px;
+  color: #AAAACC;
+  margin-bottom: 48px;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+.steps::before {
+  content: '';
+  position: absolute;
+  left: 19px; top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+}
+
+.step {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding-bottom: 36px;
+  position: relative;
+}
+.step:last-child { padding-bottom: 0; }
+
+.step-num {
+  width: 40px; height: 40px;
+  background: var(--gold);
+  color: var(--ink);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: 16px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.step-content { padding-top: 8px; }
+.step-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.step-desc { font-size: 14px; color: #8888AA; line-height: 1.55; }
+
+/* ── BONUSES ─────────────────────────────────────────────────── */
+.bonuses {
+  padding: 80px 0;
+  background: var(--purple-l);
+}
+
+.bonuses h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(24px, 3.5vw, 34px);
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -.02em;
+  margin-bottom: 10px;
+}
+.bonuses-sub {
+  font-size: 15px;
+  color: var(--ink-soft);
+  margin-bottom: 40px;
+}
+
+.bonus-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.bonus-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+.bonus-num {
+  width: 36px; height: 36px;
+  background: var(--purple);
+  color: white;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+.bonus-body { flex: 1; }
+.bonus-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.bonus-desc {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+.bonus-tag {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 99px;
+  background: var(--green-l);
+  color: var(--green);
+}
+
+/* ── OBJECTIONS ──────────────────────────────────────────────── */
+.objections {
+  padding: 80px 0;
+  background: var(--white);
+}
+
+.objections h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -.02em;
+  margin-bottom: 36px;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.faq-q {
+  width: 100%;
+  background: var(--gray);
+  border: none;
+  padding: 16px 20px;
+  text-align: left;
+  font-family: var(--ff-body);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  transition: background .15s;
+}
+.faq-q:hover { background: #ECECF0; }
+.faq-q .faq-arrow {
+  font-size: 12px;
+  color: var(--purple);
+  flex-shrink: 0;
+  transition: transform .2s;
+}
+.faq-q.open .faq-arrow { transform: rotate(180deg); }
+.faq-a {
+  display: none;
+  padding: 16px 20px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.65;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+}
+.faq-a.open { display: block; }
+
+/* ── OFFER / CTA BLOCK ───────────────────────────────────────── */
+.offer {
+  padding: 80px 0;
+  background: var(--ink);
+  text-align: center;
+}
+
+.offer-box {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 20px;
+  padding: 48px 40px;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+.offer-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.offer-title {
+  font-family: var(--ff-display);
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  margin-bottom: 24px;
+}
+
+.price-anchor {
+  font-size: 14px;
+  color: #666688;
+  text-decoration: line-through;
+  margin-bottom: 4px;
+}
+.price-main {
+  font-family: var(--ff-display);
+  font-size: 56px;
+  font-weight: 800;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 6px;
+  letter-spacing: -.03em;
+}
+.price-main span { font-size: 24px; vertical-align: super; }
+.price-sub {
+  font-size: 13px;
+  color: #8888AA;
+  margin-bottom: 32px;
+}
+
+.offer-includes {
+  text-align: left;
+  margin-bottom: 32px;
+  background: rgba(255,255,255,.04);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+}
+.offer-includes-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: #8888AA;
+  margin-bottom: 12px;
+}
+.offer-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  color: #CCCCEE;
+  margin-bottom: 8px;
+}
+.offer-line:last-child { margin-bottom: 0; }
+.offer-line::before {
+  content: '✓';
+  color: var(--gold);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.btn-primary-lg {
+  display: block;
+  width: 100%;
+  background: var(--gold);
+  color: var(--ink);
+  font-family: var(--ff-body);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 18px 36px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  text-align: center;
+  transition: transform .15s, box-shadow .15s, background .15s;
+  box-shadow: 0 6px 24px rgba(212,172,13,.40);
+  cursor: pointer;
+  border: none;
+  margin-bottom: 14px;
+}
+.btn-primary-lg:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(212,172,13,.5);
+  background: #E5BC1A;
+}
+
+.offer-security {
+  font-size: 12px;
+  color: #666688;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* ── GUARANTEE ───────────────────────────────────────────────── */
+.guarantee {
+  padding: 64px 0;
+  background: var(--green-l);
+}
+.guarantee-inner {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+}
+.guarantee-badge {
+  width: 80px; height: 80px;
+  background: var(--green);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px;
+  flex-shrink: 0;
+}
+.guarantee-body h3 {
+  font-family: var(--ff-display);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+.guarantee-body p {
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.65;
+}
+
+/* ── FOOTER ──────────────────────────────────────────────────── */
+footer {
+  background: var(--ink);
+  padding: 32px 0;
+  text-align: center;
+}
+footer p {
+  font-size: 12px;
+  color: #555577;
+  line-height: 1.8;
+}
+footer a { color: #7777AA; text-decoration: none; }
+footer a:hover { color: var(--gold); }
+
+/* ── FLOATING CTA (mobile) ───────────────────────────────────── */
+.floating-cta {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--ink);
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding: 12px 20px;
+  z-index: 100;
+}
+.floating-cta a {
+  display: block;
+  background: var(--gold);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 15px;
+  text-align: center;
+  padding: 14px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+}
+
+/* ── SCROLL REVEAL ───────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .hero { padding: 52px 0 48px; }
+  .includes-grid { grid-template-columns: 1fr; }
+  .pain-grid { grid-template-columns: 1fr; }
+  .offer-box { padding: 32px 20px; }
+  .guarantee-inner { flex-direction: column; align-items: center; text-align: center; }
+  .floating-cta { display: block; }
+  body { padding-bottom: 72px; }
+  .sheet-tabs { display: none; }
+  .sheet-table th:nth-child(3),
+  .sheet-table td:nth-child(3) { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .btn-primary:hover, .btn-primary-lg:hover { transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="ann-bar">
+  🎁 Compra hoje: ganhe os 4 bônus gratuitamente — acesso imediato após o pagamento
+</div>
+
+<!-- ══════════════════════════════════════════════ HERO ═══════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">Planilha de Precificação</div>
+    <h1>Você trabalha todo dia.<br>Por que o dinheiro<br><span class="accent">some no fim do mês?</span></h1>
+    <p class="hero-sub">Descubra o preço ideal dos seus produtos ou serviços em minutos — garantindo lucro em cada venda, sem precisar entender de finanças.</p>
+
+    <div class="hero-cta-group">
+      <!-- ⚠️ SUBSTITUA O LINK ABAIXO PELO SEU LINK DE PAGAMENTO DA KIWIFY -->
+      <a href="https://pay.kiwify.com.br/Tt0gcVh" class="btn-primary">Quero saber meu preço certo agora →</a>
+      <span class="hero-guarantee">Pagamento seguro · Pix, cartão ou boleto · Acesso imediato</span>
+    </div>
+
+    <div class="hero-badges">
+      <div class="hero-badge">
+        <span class="hero-badge-icon">⚡</span>
+        <div class="hero-badge-text"><strong>10 minutos</strong>para precificar</div>
+      </div>
+      <div class="hero-badge">
+        <span class="hero-badge-icon">📊</span>
+        <div class="hero-badge-text"><strong>8 abas</strong>prontas para usar</div>
+      </div>
+      <div class="hero-badge">
+        <span class="hero-badge-icon">🔢</span>
+        <div class="hero-badge-text"><strong>Zero</strong>cálculo manual</div>
+      </div>
+      <div class="hero-badge">
+        <span class="hero-badge-icon">💻</span>
+        <div class="hero-badge-text"><strong>Excel</strong>e Google Sheets</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ DOR ════════ -->
+<section class="pain">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Você se reconhece aqui?</p>
+      <h2>O problema não é o seu produto.<br>É o seu preço.</h2>
+      <p class="pain-intro">A maioria dos pequenos empreendedores cobra no achismo. Olha pro concorrente, chuta um número — e no fim do mês se pergunta por que sobra tão pouco.</p>
+    </div>
+
+    <div class="pain-grid reveal">
+      <div class="pain-card">
+        <div class="pain-icon">😰</div>
+        <div class="pain-text"><strong>"Trabalho muito e sobra pouco"</strong>Alta demanda com baixo retorno é sinal clássico de preço calculado errado.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🤷</div>
+        <div class="pain-text"><strong>"Não sei se estou no lucro"</strong>Operar sem saber se cada venda dá lucro é andar no escuro financeiro.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">😬</div>
+        <div class="pain-text"><strong>"Tenho medo de cobrar caro"</strong>Medo de perder clientes faz você cobrar menos do que deveria — e atrair quem não valoriza seu trabalho.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🎲</div>
+        <div class="pain-text"><strong>"Cobro o que o concorrente cobra"</strong>O concorrente também pode estar errando. Seu preço precisa ser baseado nos seus custos, não nos dele.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ PRODUTO ════ -->
+<section class="product">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">A solução</p>
+      <h2>Apresentando a<br>Fórmula de Preço</h2>
+      <p class="product-sub">Uma planilha profissional que faz todos os cálculos por você. Você digita seus custos, escolhe sua margem — e em minutos tem o preço mínimo, ideal e premium de qualquer produto ou serviço.</p>
+    </div>
+
+    <!-- PLANILHA MOCKUP -->
+    <div class="mockup reveal">
+      <div class="mockup-bar">
+        <div class="mockup-dot d-red"></div>
+        <div class="mockup-dot d-yellow"></div>
+        <div class="mockup-dot d-green"></div>
+        <span class="mockup-title">Formula_de_Preco.xlsx</span>
+      </div>
+
+      <div class="sheet-tabs">
+        <div class="sheet-tab">🏠 Início</div>
+        <div class="sheet-tab">🏢 Meu Negócio</div>
+        <div class="sheet-tab">💸 Custos Fixos</div>
+        <div class="sheet-tab">🧾 Custo do Produto</div>
+        <div class="sheet-tab">📊 Margem</div>
+        <div class="sheet-tab active-tab">💰 Preço Final</div>
+        <div class="sheet-tab">📋 Tabela</div>
+        <div class="sheet-tab">📈 Cenário</div>
+      </div>
+
+      <table class="sheet-table">
+        <thead>
+          <tr>
+            <th>Resultado</th>
+            <th>Valor (R$)</th>
+            <th>O que significa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="cell-label">🔴 Preço MÍNIMO</td>
+            <td class="cell-red">R$ 48,00</td>
+            <td class="cell-label">Abaixo = prejuízo</td>
+          </tr>
+          <tr>
+            <td class="cell-label">🟡 Preço IDEAL</td>
+            <td class="cell-gold">R$ 74,00</td>
+            <td class="cell-label">Com sua margem desejada</td>
+          </tr>
+          <tr>
+            <td class="cell-label">🔵 Preço PREMIUM</td>
+            <td class="cell-blue">R$ 120,00</td>
+            <td class="cell-label">Posicionamento de valor</td>
+          </tr>
+          <tr>
+            <td class="cell-label">💚 Lucro por venda</td>
+            <td class="cell-green">R$ 26,00</td>
+            <td class="cell-label">O que fica no seu bolso</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="includes-grid reveal">
+      <div class="include-item">
+        <div class="include-check">✓</div>
+        <div class="include-text"><strong>Cálculo automático</strong>Custo fixo, custo do produto, margem de lucro e ponto de equilíbrio — sem fórmulas manuais.</div>
+      </div>
+      <div class="include-item">
+        <div class="include-check">✓</div>
+        <div class="include-text"><strong>Tabela para 10 produtos</strong>Precifique todo o seu cardápio de uma vez, com margem individual por item.</div>
+      </div>
+      <div class="include-item">
+        <div class="include-check">✓</div>
+        <div class="include-text"><strong>Simulador "E se eu cobrar...?"</strong>Teste qualquer preço antes de anunciar e veja o impacto no lucro na hora.</div>
+      </div>
+      <div class="include-item">
+        <div class="include-check">✓</div>
+        <div class="include-text"><strong>Gráfico de cenários</strong>Visual imediato de quanto é custo e quanto é lucro em cada cenário de preço.</div>
+      </div>
+      <div class="include-item">
+        <div class="include-check">✓</div>
+        <div class="include-text"><strong>Compatible com Excel e Google Sheets</strong>Funciona no computador ou direto no celular pelo Google Drive.</div>
+      </div>
+      <div class="include-item">
+        <div class="include-check">✓</div>
+        <div class="include-text"><strong>Para produto, serviço ou digital</strong>Funciona para qualquer tipo de negócio — MEI, autônomo ou pequena empresa.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ COMO FUNCIONA -->
+<section class="how">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label" style="color: rgba(212,172,13,.7);">Simples assim</p>
+      <h2>Do zero ao preço certo<br>em 4 passos</h2>
+      <p class="how-sub">Sem precisar entender de finanças. Sem fórmulas. Sem cursos.</p>
+    </div>
+
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Preencha seus custos fixos</div>
+          <div class="step-desc">Aluguel, internet, assinaturas, energia — tudo que você paga todo mês, mesmo sem vender nada.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Informe o custo do produto ou serviço</div>
+          <div class="step-desc">Materiais, tempo de trabalho, embalagem, taxas de plataforma. A planilha soma tudo sozinha.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Escolha sua margem de lucro</div>
+          <div class="step-desc">A planilha sugere faixas por tipo de posicionamento. Você decide quanto quer ganhar em cada venda.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Veja seu preço ideal calculado</div>
+          <div class="step-desc">Preço mínimo, ideal e premium — automaticamente. Com simulador para testar qualquer variação antes de anunciar.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ BÔNUS ══════ -->
+<section class="bonuses">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Incluído na compra</p>
+      <h2>4 bônus que valem<br>mais que o produto</h2>
+      <p class="bonuses-sub">Além da planilha, você recebe esses materiais sem custo adicional.</p>
+    </div>
+
+    <div class="bonus-list reveal">
+      <div class="bonus-card">
+        <div class="bonus-num">1</div>
+        <div class="bonus-body">
+          <div class="bonus-title">Guia Completo de Operação em PDF</div>
+          <div class="bonus-desc">11 páginas explicando cada aba da planilha com exemplos reais, dicas e perguntas frequentes. Abra lado a lado com a planilha e siga o passo a passo.</div>
+          <span class="bonus-tag">Incluído gratuitamente</span>
+        </div>
+      </div>
+      <div class="bonus-card">
+        <div class="bonus-num">2</div>
+        <div class="bonus-body">
+          <div class="bonus-title">Frases Prontas para Comunicar Reajuste</div>
+          <div class="bonus-desc">Modelos de mensagem para WhatsApp e Instagram para avisar clientes sobre aumento de preço — sem perder vendas, sem constrangimento.</div>
+          <span class="bonus-tag">Incluído gratuitamente</span>
+        </div>
+      </div>
+      <div class="bonus-card">
+        <div class="bonus-num">3</div>
+        <div class="bonus-body">
+          <div class="bonus-title">Checklist de Revisão Trimestral de Preços</div>
+          <div class="bonus-desc">Use a cada 3 meses para garantir que seus preços ainda protegem seu lucro. Inclui os 5 sinais de que é hora de cobrar mais.</div>
+          <span class="bonus-tag">Incluído gratuitamente</span>
+        </div>
+      </div>
+      <div class="bonus-card">
+        <div class="bonus-num">4</div>
+        <div class="bonus-body">
+          <div class="bonus-title">Tabela de Margens por Segmento</div>
+          <div class="bonus-desc">Referência de margens praticadas em beleza, alimentação, artesanato, serviços e produtos digitais. Saiba se o seu preço está dentro do padrão do seu setor.</div>
+          <span class="bonus-tag">Incluído gratuitamente</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ OBJEÇÕES ═══ -->
+<section class="objections">
+  <div class="container">
+    <div class="reveal">
+      <h2>Ainda tem alguma dúvida?</h2>
+    </div>
+
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Não entendo de planilha. Vou conseguir usar?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">A planilha foi criada exatamente para quem não entende de finanças. Você só digita os números nas células marcadas em azul — o restante é calculado automaticamente. O Guia em PDF incluído explica cada campo com exemplos reais.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Funciona para o meu tipo de negócio?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">Sim. A planilha funciona para produto físico, serviço, produto digital e negócios mistos. Há campos específicos para cada tipo, incluindo taxas de plataformas como iFood, Mercado Livre e Shopify.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Preciso ter Excel instalado?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">Não. Você pode usar gratuitamente no Google Sheets — basta fazer upload do arquivo no Google Drive. Também funciona normalmente no Excel, caso prefira.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Como recebo a planilha após a compra?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">Imediatamente após a confirmação do pagamento, você recebe um email com o link para baixar a planilha e todos os bônus. O acesso é instantâneo — inclusive para pagamentos via Pix.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Posso encontrar uma planilha assim de graça?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">Planilhas genéricas existem, mas exigem que você entenda de fórmulas, adapte os campos e saiba o que está fazendo. Esta já vem com tudo pronto, testado e explicado passo a passo — inclusive com guia de operação e bônus incluídos.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ GARANTIA ═══ -->
+<section class="guarantee">
+  <div class="container">
+    <div class="guarantee-inner reveal">
+      <div class="guarantee-badge">🛡️</div>
+      <div class="guarantee-body">
+        <h3>Garantia de 7 dias — sem perguntas</h3>
+        <p>Se você abrir a planilha, tentar usar e sentir que não era o que precisava, devolvemos 100% do seu dinheiro em até 7 dias. Basta mandar uma mensagem. Sem burocracia, sem justificativa. O risco é todo nosso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ OFERTA ═════ -->
+<section class="offer" id="comprar">
+  <div class="container">
+    <div class="offer-box reveal">
+      <div class="offer-label">Oferta de lançamento</div>
+      <div class="offer-title">Tudo que você precisa<br>para precificar certo</div>
+
+      <div class="price-anchor">De R$ 97</div>
+      <div class="price-main"><span>R$</span>27</div>
+      <div class="price-sub">pagamento único · acesso imediato · garantia de 7 dias</div>
+
+      <div class="offer-includes">
+        <div class="offer-includes-title">O que você recebe</div>
+        <div class="offer-line">Planilha Fórmula de Preço (8 abas)</div>
+        <div class="offer-line">Bônus 1 — Guia de Operação em PDF</div>
+        <div class="offer-line">Bônus 2 — Frases para Comunicar Reajuste</div>
+        <div class="offer-line">Bônus 3 — Checklist de Revisão Trimestral</div>
+        <div class="offer-line">Bônus 4 — Tabela de Margens por Segmento</div>
+      </div>
+
+      <!-- ⚠️ SUBSTITUA O LINK ABAIXO PELO SEU LINK DE PAGAMENTO DA KIWIFY -->
+      <a href="https://pay.kiwify.com.br/Tt0gcVh" class="btn-primary-lg">Quero garantir meu acesso agora →</a>
+      <div class="offer-security">🔒 Pagamento 100% seguro via Pix, cartão ou boleto</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ FOOTER ═════ -->
+<footer>
+  <div class="container">
+    <p>
+      <strong style="color:#D4AC0D; font-family:'Syne',sans-serif; font-size:15px;">💰 Fórmula de Preço</strong>
+    </p>
+    <p style="margin-top:8px;">
+      <!-- ⚠️ SUBSTITUA PELO SEU LINK KIWIFY -->
+      <a href="https://pay.kiwify.com.br/Tt0gcVh">Comprar</a> ·
+      <a href="mailto:SEU_EMAIL_AQUI">Contato</a> ·
+      <a href="#">Política de Privacidade</a>
+    </p>
+    <p style="margin-top:10px;">© 2025 Fórmula de Preço. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<!-- FLOATING CTA (mobile) -->
+<div class="floating-cta">
+  <!-- ⚠️ SUBSTITUA O LINK ABAIXO PELO SEU LINK DE PAGAMENTO DA KIWIFY -->
+  <a href="https://pay.kiwify.com.br/Tt0gcVh">Garantir acesso por R$ 27 →</a>
+</div>
+
+<script>
+  /* ── FAQ ACCORDION ── */
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const isOpen = answer.classList.contains('open');
+    document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+    document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('open'));
+    if (!isOpen) {
+      answer.classList.add('open');
+      btn.classList.add('open');
+    }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
