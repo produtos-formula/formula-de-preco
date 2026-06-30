@@ -761,6 +761,72 @@ footer a:hover { color: var(--gold); }
   text-decoration: none;
 }
 
+/* ── TESTIMONIALS ────────────────────────────────────────────── */
+.testimonials {
+  padding: 72px 0;
+  background: var(--ink);
+}
+.testimonials h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -.02em;
+  margin-bottom: 8px;
+}
+.testimonials-sub {
+  font-size: 15px;
+  color: #AAAACC;
+  margin-bottom: 40px;
+}
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+.testi-card {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: var(--radius);
+  padding: 24px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  transition: transform .2s;
+}
+.testi-card:hover { transform: translateY(-3px); }
+.testi-avatar {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gold);
+}
+.testi-stars { color: var(--gold); font-size: 16px; letter-spacing: 2px; }
+.testi-text {
+  font-size: 14px;
+  color: #DDDDEE;
+  line-height: 1.6;
+  font-style: italic;
+}
+.testi-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold);
+}
+/* ── MID CTA ─────────────────────────────────────────────────── */
+.mid-cta {
+  padding: 48px 0;
+  background: var(--gold-light);
+  text-align: center;
+}
+.mid-cta p {
+  font-size: 15px;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+}
+
 /* ── SCROLL REVEAL ───────────────────────────────────────────── */
 .reveal {
   opacity: 0;
@@ -996,6 +1062,49 @@ footer a:hover { color: var(--gold); }
   </div>
 </section>
 
+<!-- ══════════════════════════════════════════════ DEPOIMENTOS ═ -->
+<section class="testimonials">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label" style="color:rgba(212,172,13,.7);">Quem já usou aprovou</p>
+      <h2>O que nossos clientes dizem</h2>
+      <p class="testimonials-sub">Resultados reais de quem já descobriu o preço certo do seu negócio.</p>
+    </div>
+    <div class="testimonials-grid reveal">
+
+      <div class="testi-card">
+        <img class="testi-avatar" src="https://ui-avatars.com/api/?name=Marina+Alves&background=6C3483&color=fff&size=128" alt="Foto de Marina Alves">
+        <div class="testi-stars">★★★★☆</div>
+        <p class="testi-text">"Muito fácil de usar, ansiosa por mais!!"</p>
+        <span class="testi-name">Marina Alves</span>
+      </div>
+
+      <div class="testi-card">
+        <img class="testi-avatar" src="https://ui-avatars.com/api/?name=Roberto+Almeida&background=1E8449&color=fff&size=128" alt="Foto de Roberto de Almeida">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Este foi o melhor investimento que já fiz."</p>
+        <span class="testi-name">Roberto de Almeida</span>
+      </div>
+
+      <div class="testi-card">
+        <img class="testi-avatar" src="https://ui-avatars.com/api/?name=Joaquim+Goncalves&background=D4AC0D&color=1A1A2E&size=128" alt="Foto de Joaquim Gonçalves">
+        <div class="testi-stars">★★★★☆</div>
+        <p class="testi-text">"Comprei e já consegui calcular o preço certo dos meus produtos. Vale muito o investimento!"</p>
+        <span class="testi-name">Joaquim Gonçalves</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ MID CTA ══════ -->
+<section class="mid-cta">
+  <div class="container reveal">
+    <p>Já convencido? Não precisa esperar o final da página.</p>
+    <a href="https://pay.kiwify.com.br/Tt0gcVh" class="btn-primary">Quero meu acesso agora por R$ 27 →</a>
+  </div>
+</section>
+
 <!-- ══════════════════════════════════════════════ BÔNUS ══════ -->
 <section class="bonuses">
   <div class="container">
@@ -1141,7 +1250,7 @@ footer a:hover { color: var(--gold); }
       <a href="mailto:SEU_EMAIL_AQUI">Contato</a> ·
       <a href="#">Política de Privacidade</a>
     </p>
-    <p style="margin-top:10px;">© 2025 Fórmula de Preço. Todos os direitos reservados.</p>
+    <p style="margin-top:10px;">© 2026 Fórmula de Preço. Todos os direitos reservados.</p>
   </div>
 </footer>
 
